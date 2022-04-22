@@ -1,5 +1,7 @@
 package it.polito.tdp.meteo.model;
 
+import java.rmi.UnexpectedException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Citta {
@@ -8,8 +10,6 @@ public class Citta {
 	private String nome;
 	private List<Rilevamento> rilevamenti;
 	private int counter = 0;
-	
-	
 	
 	public Citta(String nome) {
 		this.nome = nome;
@@ -44,8 +44,28 @@ public class Citta {
 		this.counter = counter;
 	}
 	
+	public void increaseCounter(int i) {
+		this.counter += i;
+	}
+	
+	public void decreaseCounter(int i) {
+		this.counter -= i;
+	}
+	
 	public void increaseCounter() {
 		this.counter += 1;
+	}
+	
+	public void decreaseCounter() {
+		this.counter -= 1;
+	}
+	
+	public int getUmiditaByDate(LocalDate giorno) throws UnexpectedException {
+		for(Rilevamento r : rilevamenti) {
+			if(r.getData().getDayOfMonth()==giorno.getDayOfMonth() & r.getData().getMonthValue()==giorno.getMonthValue())
+				return r.getUmidita();
+		}
+		throw new UnexpectedException("Qualcosa è andato storto nella ricerca dell'umidità");
 	}
 
 	@Override
