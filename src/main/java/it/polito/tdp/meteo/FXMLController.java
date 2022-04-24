@@ -38,6 +38,7 @@ public class FXMLController {
 
     @FXML
     void doCalcolaSequenza(ActionEvent event) {
+    	this.txtResult.clear();
     	int mese = this.boxMese.getValue();
     	// controllo che abbia selezionato un valore
     	if(!this.isMeseSelezionato(mese))
@@ -47,6 +48,7 @@ public class FXMLController {
 
     @FXML
     void doCalcolaUmidita(ActionEvent event) {
+    	this.txtResult.clear();
     	int mese = this.boxMese.getValue();
     	// controllo che abbia selezionato un valore
     	if(!this.isMeseSelezionato(mese))
